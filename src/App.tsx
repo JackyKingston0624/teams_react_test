@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { app } from '@microsoft/teams-js';
+
 
 function App() {
+  useEffect(() => {
+    app.initialize().then(() => {
+      console.log("Teams SDK initialized");
+
+      app.getContext().then((context) => {
+        console.log("Teams context:", context);
+      });
+    });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
